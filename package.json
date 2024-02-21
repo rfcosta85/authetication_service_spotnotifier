@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/rfcosta85/authetication_service_spotnotifier.git#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "yenv": "^3.0.1"
   }
 }
