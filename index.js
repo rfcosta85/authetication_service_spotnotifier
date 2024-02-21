@@ -1,5 +1,7 @@
 import app from './api/server/server.js';
+import config from './api/config/config.js';
 
-app.listen(3002, () => {
-    console.log('Server is running on port 3002');
+
+app.listen(config.PORT, () => {
+    console.log('Server is running on port ' + config.PORT);
 });
