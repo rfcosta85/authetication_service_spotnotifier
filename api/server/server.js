@@ -1,13 +1,7 @@
-// const express = require('express')
 import express from 'express'
+import authRouters from '../routes/routes.js';
+
 const app = express()
+app.use('/auth',authRouters)
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
-
-// app.listen(3001, () => {
-//   console.log('Server is running on port 3001');
-// });
-
-export default app; // Export app for testing
+export default app;
