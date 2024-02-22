@@ -1,9 +1,12 @@
-const middlewareAuthentication = (req, res, next) => {
-    const t = true
-    if (t) {
+import isAuthenticationService from '../modules/authentication-module.js'
+
+const middlewareAuthentication = async (req, res, next) => {
+    const { token } = req.body    
+    const isAuth = await isAuthenticationService(token)
+    if (isAuth) {
         next();
     } else { 
-        res.status(401).send('Unauthorized');
+        res.status(401).send('Unauthorized - middle');
     }
 };
 
