@@ -35,20 +35,17 @@ import jwt from 'jsonwebtoken';
       this.client.disconnect();    
     } else {
       Blocklist.Memory.push({ token, timeExpirationInSeconds });
-      console.log(Blocklist.Memory)
     }
   }
 
   async isBlock(token) {
     const tokenDecoded = this.decodeToken(token)
     
-    console.log('token: ', token)
     if (config.enviroment === 'production') {
         return this.client.keys(token).length > 0
     } else {
       this.removeExpiredToken()
       
-      console.log('Status token recebido: ', Blocklist.Memory.some(td => td.token === tokenDecoded.token))
      return Blocklist.Memory.some(td => td.token === tokenDecoded.token)
     }
   }

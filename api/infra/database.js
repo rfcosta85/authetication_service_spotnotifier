@@ -4,11 +4,11 @@ import config from '../config/config.js';
 class Database {
     constructor() {
         this.pool = new Pool({
-            user: config.DB_USER,
-            host: config.DB_HOST,
-            database: config.DB_NAME,
-            password: config.DB_PASSWORD,
-            port: config.DB_PORT,
+            user: config.database.user,
+            host: config.database.host,
+            databaseName: config.database.name,
+            password: config.database.password,
+            port: config.database.port,
         });
     }
 

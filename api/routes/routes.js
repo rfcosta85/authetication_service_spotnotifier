@@ -2,7 +2,7 @@ import express from 'express'
 import loginController from '../controllers/login-controller.js';
 import logoutService from '../controllers/logout-controller.js';
 import isAuthentication from '../controllers/is-authentication-controller.js';
-import isAuthorization from '../controllers/is-authorization.js';
+import isAuthorization from '../controllers/is-authorization-controller.js';
 import middlewareAuthentication from '../middlewares/middleware-is-autentication.js';
 
 const authRouters = express.Router();

@@ -2,16 +2,16 @@ import Database from '../infra/database.js';
 import config from '../config/config.js';
 
 class UserRepository {
+    static Memory = [{
+        id: 1,
+        email: 'rodrigo@ipca.pt',
+        password: '$2b$10$ux6DGoHPA0cK5MQEHHD7xeMcjwYb5hICVuUMUgLAMySIIAlyXPPSO',
+        permission: ['administrador', 'user']
+    }];
     constructor() {
         if (config.enviroment === "production") {
             this.db = new Database();
-        } else {
-            this.memory = [{
-                id: 1,
-                email: 'rodrigo@ipca.pt',
-                password: '$2b$10$ux6DGoHPA0cK5MQEHHD7xeMcjwYb5hICVuUMUgLAMySIIAlyXPPSO'
-            }];
-        }
+        } 
     }
     async findUserByEmail(email) {
         if (config.enviroment === 'production') {
@@ -20,7 +20,7 @@ class UserRepository {
             return result.rows[0];
         } else {
             let foundUser
-             this.memory.forEach((user) => {
+             UserRepository.Memory.forEach((user) => {
                 if (user.email === email) {
                     foundUser = user
                 }
@@ -35,14 +35,15 @@ class UserRepository {
             const result = await this.db.query(query, [id]);
             return result.rows[0];
         } else {
-            this.memory.forEach((user) => {
+            let foundUser
+            UserRepository.Memory.forEach((user) => {
                 if (user.id === id) {
-                    return user
+                    foundUser = user
                 }
-                return null
             })
+            return foundUser
         }
-    }
+    }    
 }
 
 export default UserRepository;
