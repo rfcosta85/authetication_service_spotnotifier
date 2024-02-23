@@ -20,10 +20,6 @@ async function validateLogin(email, password) {
             expiresIn: config.jwt.expiration
         });
 
-        const smalltoken = jwt.sign({id: user.id}, config.jwt.secret, {
-            expiresIn: Math.floor(Date.now() / 1000) - 30
-        })
-
         return {user, token}
     } catch (error) {
         throw new Error('Credentials invalid');

@@ -10,12 +10,14 @@ if (env.enviroment == enviroment) {
 }
 const config = {
     enviroment: enviroment,
-    PORT: env.PORT,
-    DB_HOST: env.DB_HOST,
-    DB_USER: env.DB_USER,
-    DB_PASSWORD: env.DB_PASSWORD,
-    DB_NAME: env.DB_NAME,
-    DB_PORT: env.DB_PORT,
+    PORT: env.PORT,    
+    database: {
+        user: env.database.user,
+        host: env.database.host,
+        databaseName: env.database.name,
+        password: env.database.password,
+        port: env.database.port,        
+    },
     redis: {
         host: env.redis.host,
         port: env.redis.port,

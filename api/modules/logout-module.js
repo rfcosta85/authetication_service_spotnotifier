@@ -1,4 +1,3 @@
-import jwt from 'jsonwebtoken';
 import Blocklist from '../infra/blocklist.js';
 
 async function logoutService(token) {

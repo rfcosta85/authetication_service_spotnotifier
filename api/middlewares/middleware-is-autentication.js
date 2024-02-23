@@ -6,7 +6,7 @@ const middlewareAuthentication = async (req, res, next) => {
     if (isAuth) {
         next();
     } else { 
-        res.status(401).send('Unauthorized - middle');
+        res.status(401).send('Unauthorized');
     }
 };
 
