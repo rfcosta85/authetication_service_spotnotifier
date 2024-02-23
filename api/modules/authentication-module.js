@@ -8,12 +8,10 @@ async function isAuthenticationService(token) {
         jwt.verify(token, config.jwt.secret)
         const isBLock = await blocklist.isBlock(token)
         if (isBLock) {
-            console.log('sou block')
             throw new Error()
         }
         return true
     } catch (error) {
-        console.log('error: ', error)
         return false
     }
 }
