@@ -1,0 +1,46 @@
+version: '3.8'
+
+volumes: 
+  postgres-vol:
+
+networks: 
+  spotnotifier-net:
+    driver: bridge
+
+services:
+
+  nginx:
+    image: nginx
+    ports: 
+        - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - spotnotifier-net 
+  authentication:
+    image: rfcosta85/spotnotifier-auth:v1
+    ports:
+        - 8081:80
+    networks:
+      - spotnotifier-net
+    depends_on: 
+      - postgres
+    environment:
+      DB_DATABASE: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin
+      DB_HOST: localhost
+  
+  postgres:
+    image: postgres
+    # ports:
+    #   - 5432:5432
+    networks: 
+      - spotnotifier-net
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
+    
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
